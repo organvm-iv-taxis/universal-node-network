@@ -4,6 +4,14 @@
 
 # Universal Node Network
 
+[![CI](https://github.com/organvm-iv-taxis/universal-node-network/actions/workflows/ci.yml/badge.svg)](https://github.com/organvm-iv-taxis/universal-node-network/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-pending-lightgrey)](https://github.com/organvm-iv-taxis/universal-node-network)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/organvm-iv-taxis/universal-node-network/blob/main/LICENSE)
+[![Organ IV](https://img.shields.io/badge/Organ-IV%20Taxis-10B981)](https://github.com/organvm-iv-taxis)
+[![Status](https://img.shields.io/badge/status-active-brightgreen)](https://github.com/organvm-iv-taxis/universal-node-network)
+[![Shell](https://img.shields.io/badge/lang-Shell-informational)](https://github.com/organvm-iv-taxis/universal-node-network)
+
+
 **Distributed node network infrastructure for decentralized cross-organ communication.**
 
 Universal Node Network (UNN) provides the communication backbone for the [ORGAN system](https://github.com/meta-organvm) — a topology-aware message routing layer that enables autonomous nodes across all eight organs to discover each other, negotiate capabilities, and exchange structured messages without centralized brokers. Where [agentic-titan](https://github.com/organvm-iv-taxis/agentic-titan) orchestrates *agent intelligence* and [petasum-super-petasum](https://github.com/organvm-iv-taxis/petasum-super-petasum) manages *layered abstraction*, UNN handles the raw plumbing: node identity, network topology, message serialization, and reliable delivery across organizational boundaries.
