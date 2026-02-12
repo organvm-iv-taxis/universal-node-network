@@ -6,7 +6,7 @@ routing logic for inter-organ communication.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
 from .node import Node, NodeStatus
