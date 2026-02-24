@@ -63,11 +63,11 @@ It belongs to **ORGAN IV (Orchestration)** under the `organvm-iv-taxis` GitHub o
 ## System Context (auto-generated — do not edit)
 
 **Organ:** ORGAN-IV (Orchestration) | **Tier:** standard | **Status:** LOCAL
-**Org:** `unknown` | **Repo:** `universal-node-network`
+**Org:** `organvm-iv-taxis` | **Repo:** `universal-node-network`
 
 ### Edges
-- **Produces** → `unknown`: unknown
-- **Consumes** ← `META-ORGANVM`: unknown
+- **Produces** → `all`: Governance policy and node network infrastructure
+- **Consumes** ← `META-ORGANVM`: Registry data for orchestration
 
 ### Siblings in Orchestration
 `orchestration-start-here`, `petasum-super-petasum`, `.github`, `agentic-titan`, `agent--claude-smith`, `a-i--skills`
