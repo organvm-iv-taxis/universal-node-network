@@ -1,12 +1,15 @@
+# GEMINI.md — universal-node-network
+
+See `CLAUDE.md` in this repo for full development instructions, architecture, and commands. This file provides system context for Gemini-based AI coding tools.
+
 <!-- ORGANVM:AUTO:START -->
 ## System Context (auto-generated — do not edit)
 
 **Organ:** ORGAN-IV (Orchestration) | **Tier:** standard | **Status:** CANDIDATE
-**Org:** `unknown` | **Repo:** `universal-node-network`
+**Org:** `organvm-iv-taxis` | **Repo:** `universal-node-network`
 
 ### Edges
-- **Produces** → `unknown`: unknown
-- **Consumes** ← `META-ORGANVM`: unknown
+- **Consumes** ← `META-ORGANVM`: registry
 
 ### Siblings in Orchestration
 `orchestration-start-here`, `petasum-super-petasum`, `.github`, `agentic-titan`, `agent--claude-smith`, `a-i--skills`

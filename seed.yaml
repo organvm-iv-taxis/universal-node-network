@@ -9,7 +9,7 @@ repo: universal-node-network
 org: organvm-iv-taxis
 
 metadata:
-  implementation_status: ACTIVE
+  implementation_status: SKELETON
   tier: standard
   promotion_status: LOCAL
   last_validated: "2026-02-11"
@@ -20,12 +20,8 @@ metadata:
 agents:
   - name: ci
     trigger: on_push
-    workflow: .github/workflows/ci-python.yml
+    workflow: .github/workflows/ci.yml
     description: "Continuous integration pipeline"
-
-produces:
-  - type: governance-policy
-    description: "Orchestration config and governance rules"
 
 consumes:
   - type: registry
