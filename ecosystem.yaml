@@ -1,0 +1,7 @@
+schema_version: '1.0'
+repo: universal-node-network
+organ: IV
+display_name: Distributed node network infrastructure for decentralized systems
+delivery:
+- platform: web_app
+  status: not_started

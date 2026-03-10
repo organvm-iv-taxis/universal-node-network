@@ -7,7 +7,7 @@ This repo participates in the **ORGAN-IV (Orchestration)** swarm.
 - Event: `registry.updated` → Action: Re-validate dependency graph
 
 ### Production Responsibilities
-- **Produce** `governance-policy` for unspecified
+- *No production responsibilities*
 
 ### External Dependencies
 - **Consume** `registry` from `META-ORGANVM`
@@ -16,5 +16,5 @@ This repo participates in the **ORGAN-IV (Orchestration)** swarm.
 - Adhere to unidirectional flow: I→II→III
 - Never commit secrets or credentials
 
-*Last synced: 2026-02-24T12:41:28Z*
+*Last synced: 2026-03-08T20:11:34Z*
 <!-- ORGANVM:AUTO:END -->
