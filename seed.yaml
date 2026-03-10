@@ -9,7 +9,7 @@ repo: universal-node-network
 org: organvm-iv-taxis
 
 metadata:
-  implementation_status: SKELETON
+  implementation_status: ACTIVE
   tier: standard
   promotion_status: CANDIDATE
   last_validated: "2026-02-11"
@@ -27,8 +27,25 @@ consumes:
   - type: registry
     source: META-ORGANVM
     description: Registry data for orchestration
+  - type: metrics
+    source: META-ORGANVM
+    description: System metrics for homeostatic vital signs
+  - type: omega
+    source: META-ORGANVM
+    description: Omega scorecard for velocity vital sign
+
+produces:
+  - type: hierarchy_state
+    description: Universal hierarchy lens activation state and vital sign readings
+  - type: homeostatic_alerts
+    description: Automatic corrective actions when vitals exit normal ranges
+  - type: assembly_recommendations
+    description: Lens assembly recommendations for task-scoped organizational intelligence
 
 subscriptions:
   - event: registry.updated
     source: META-ORGANVM
-    action: Re-validate dependency graph
+    action: Re-validate dependency graph and refresh vital signs
+  - event: metrics.refreshed
+    source: META-ORGANVM
+    action: Re-evaluate homeostatic vital signs

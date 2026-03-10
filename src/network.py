@@ -1,7 +1,8 @@
 """Network module for topology management and message routing.
 
 Manages the mesh of nodes, tracks connections, and provides
-routing logic for inter-organ communication.
+routing logic for inter-organ communication. Includes HierarchyNetwork
+for representing the universal hierarchy as a live node topology.
 """
 
 from __future__ import annotations
@@ -9,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .node import Node, NodeStatus
+from .node import Node, NodeCapability, NodeStatus
 
 
 @dataclass
@@ -104,3 +105,71 @@ class Network:
     def node_ids(self) -> list[str]:
         """Return all registered node IDs."""
         return list(self._nodes.keys())
+
+
+class HierarchyNetwork(Network):
+    """A network pre-populated with the 21 universal hierarchy lenses.
+
+    Each lens becomes a node with capabilities derived from its category
+    and stratum. Edges represent cross-stratum dependencies and the
+    strange loop from /dev/ back to /boot/.
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._populate()
+
+    def _populate(self) -> None:
+        """Create nodes and edges from the hierarchy catalog."""
+        from .hierarchy import LENS_CATALOG, get_all_edges
+
+        for house in LENS_CATALOG:
+            node = Node(
+                node_id=house.lens_id,
+                organ=house.stratum.value,
+                endpoint=f"hierarchy://{house.lens_id}",
+                metadata={
+                    "name": house.name,
+                    "category": house.category.value,
+                    "summon_when": house.summon_when,
+                },
+            )
+            node.register_capability(
+                NodeCapability(name=house.category.value, version="1.0")
+            )
+            node.register_capability(
+                NodeCapability(name=f"stratum:{house.stratum.value}", version="1.0")
+            )
+            node.heartbeat()
+            self.register_node(node)
+
+        for source_id, target_id in get_all_edges():
+            self.connect(source_id, target_id)
+
+    def get_stratum_nodes(self, stratum_value: str) -> list[Node]:
+        """Get all nodes belonging to a stratum.
+
+        Args:
+            stratum_value: The stratum path (e.g., "/boot/").
+
+        Returns:
+            List of nodes in that stratum.
+        """
+        return [
+            n for n in self._nodes.values()
+            if n.organ == stratum_value
+        ]
+
+    def get_strange_loop_nodes(self) -> list[Node]:
+        """Get nodes involved in the strange loop (/dev/ → /boot/).
+
+        Returns:
+            Nodes at both ends of the strange loop.
+        """
+        from .hierarchy import STRANGE_LOOP_EDGES
+
+        ids = set()
+        for src, tgt in STRANGE_LOOP_EDGES:
+            ids.add(src)
+            ids.add(tgt)
+        return [self._nodes[nid] for nid in ids if nid in self._nodes]

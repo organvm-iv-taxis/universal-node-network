@@ -106,3 +106,66 @@ class DiscoveryService:
     def active_count(self) -> int:
         """Number of currently online nodes."""
         return sum(1 for n in self._known_nodes.values() if n.status == NodeStatus.ONLINE)
+
+
+class LensDiscovery:
+    """Discovers appropriate hierarchy lenses for a given task.
+
+    Wraps the assembly protocol from assembly.py and exposes it
+    through the discovery service pattern for consistency with
+    the existing Node/Network/Discovery architecture.
+    """
+
+    def discover_lenses(
+        self,
+        task_description: str,
+        max_lenses: int = 3,
+        exclude: list[str] | None = None,
+    ) -> list[str]:
+        """Find the best lenses for a task description.
+
+        Args:
+            task_description: Natural language description of the task.
+            max_lenses: Maximum lenses to return (hard cap: 3).
+            exclude: Lens IDs to skip.
+
+        Returns:
+            List of lens_id strings for the selected lenses.
+        """
+        from .assembly import assemble
+
+        result = assemble(task_description, max_lenses=max_lenses, exclude=exclude)
+        return [lens.lens_id for lens in result.summoned_lenses]
+
+    def discover_by_category(self, category_name: str) -> list[str]:
+        """Find lenses belonging to a specific category.
+
+        Args:
+            category_name: One of: tooling, structure, authority, foundation, generative.
+
+        Returns:
+            List of lens_id strings in that category.
+        """
+        from .hierarchy import LENSES_BY_CATEGORY, LensCategory
+
+        try:
+            cat = LensCategory(category_name)
+        except ValueError:
+            return []
+        return [h.lens_id for h in LENSES_BY_CATEGORY.get(cat, [])]
+
+    def discover_by_stratum(self, stratum_value: str) -> list[str]:
+        """Find lenses belonging to a specific stratum.
+
+        Args:
+            stratum_value: The stratum path (e.g., "/boot/").
+
+        Returns:
+            List of lens_id strings in that stratum.
+        """
+        from .hierarchy import LENSES_BY_STRATUM, Stratum
+
+        for s in Stratum:
+            if s.value == stratum_value:
+                return [h.lens_id for h in LENSES_BY_STRATUM.get(s, [])]
+        return []
