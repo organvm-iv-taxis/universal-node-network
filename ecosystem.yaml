@@ -1,7 +1,23 @@
 schema_version: '1.0'
 repo: universal-node-network
 organ: IV
-display_name: Distributed node network infrastructure for decentralized systems
+display_name: "Universal hierarchy lens — homeostatic vital signs, assembly recommendations, corrective actions"
+
 delivery:
-- platform: web_app
+- platform: python_library
+  status: in_progress
+  priority: high
+  notes: "Hierarchy lens with vital sign readings and homeostatic alerts"
+  next_action: "Complete vital sign evaluation and alert pipeline"
+- platform: api
+  status: planned
+  priority: medium
+  notes: "REST API for lens activation state and recommendations"
+  next_action: "Design API schema for hierarchy operations"
+
+content:
+- platform: docs_site
   status: not_started
+  priority: high
+  notes: "Hierarchy model reference, vital sign definitions, alert configuration"
+  next_action: "Document hierarchy lens and homeostatic ranges"

@@ -4,17 +4,22 @@
 This repo participates in the **ORGAN-IV (Orchestration)** swarm.
 
 ### Active Subscriptions
-- Event: `registry.updated` → Action: Re-validate dependency graph
+- Event: `registry.updated` → Action: Re-validate dependency graph and refresh vital signs
+- Event: `metrics.refreshed` → Action: Re-evaluate homeostatic vital signs
 
 ### Production Responsibilities
-- *No production responsibilities*
+- **Produce** `hierarchy_state` for unspecified
+- **Produce** `homeostatic_alerts` for unspecified
+- **Produce** `assembly_recommendations` for unspecified
 
 ### External Dependencies
 - **Consume** `registry` from `META-ORGANVM`
+- **Consume** `metrics` from `META-ORGANVM`
+- **Consume** `omega` from `META-ORGANVM`
 
 ### Governance Constraints
 - Adhere to unidirectional flow: I→II→III
 - Never commit secrets or credentials
 
-*Last synced: 2026-03-08T20:11:34Z*
+*Last synced: 2026-03-20T10:58:29Z*
 <!-- ORGANVM:AUTO:END -->
